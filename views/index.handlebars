@@ -1,5 +1,5 @@
 <!-- 5. Output the animalType string, pet boolean and fierceness number to the page for all the animals. -->
-<ul>
+<!-- <ul>
   {{#each articles}}
     <li>
       <p>Title: {{title}}</p>
@@ -7,4 +7,37 @@
       <p>Summary: {{summary}}</p>
     </li>
   {{/each}}
-</ul>
+</ul> -->
+<!-- <div class="container">
+  <div class="row"> -->
+    <!-- <div class="card-group"> -->
+<div class="container">
+
+
+<div class="row">
+  <h1 class= "col-10 text-center bg-warning p-4 mx-auto">NYT Web Scraper...Mongo and Handlebars edition</h1>
+</div>
+
+<div class="row">
+
+
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        {{#each articles}}
+        <div class="card col-5 p-3 my-2 mx-auto">
+        <div class="card-body">
+          <h5 class="card-title">{{title}}</h5>
+
+          <a href="{{link}}">article link</a>
+          <p class="card-text"><small class="text-muted">{{summary}}</small></p>
+        </div>
+      </div>
+          {{/each}}
+
+</div>
+
+</div>    <!-- </div> -->
+<!--
+
+  </div>
+
+</div> -->
