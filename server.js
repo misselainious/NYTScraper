@@ -41,12 +41,9 @@ db.Article.find({})
       var hbsObject = {
         articles: data
       };
-      console.log(hbsObject);
+      // console.log(hbsObject);
       res.render("index", hbsObject);
     });
-
-
-
     // res.render('index');
 });
 
@@ -109,6 +106,23 @@ app.get("/articles", function(req, res) {
     });
 });
 
+// Clear the DB
+app.get("/clearall", function(req, res) {
+  // Remove every note from the notes collection
+  db.Article.remove({}, function(error, response) {
+    // Log any errors to the console
+    if (error) {
+      console.log(error);
+      res.send(error);
+    }
+    else {
+      // Otherwise, send the mongojs response to the browser
+      // This will fire off the success function of the ajax request
+      console.log(response);
+      res.send(response);
+    }
+  });
+});
 
 
 app.listen(PORT, function() {
