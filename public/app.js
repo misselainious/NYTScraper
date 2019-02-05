@@ -1,3 +1,4 @@
+
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function() {
   // Empty the notes from the note section
@@ -13,7 +14,12 @@ $(document).on("click", "p", function() {
   })
     // With that done, add the note information to the page
     .then(function(data) {
+        console.log("this ID:",thisId)
       console.log(data);
+// const notes = [];
+//
+//       notes.push(thisId);
+//       $("#notes").append("<h2>" + notes + "</h2>");
       // The title of the article
       $("#notes").append("<h2>" + data.title + "</h2>");
       // An input to enter a new title
@@ -37,6 +43,7 @@ $(document).on("click", "p", function() {
 $(document).on("click", "#savenote", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
+  console.log("this ID:",thisId)
 
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({

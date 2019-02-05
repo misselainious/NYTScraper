@@ -5,6 +5,8 @@
     <h1 class="col-10 text-center bg-warning p-4 mx-auto">Extra! Extra! Read all the news below!</h1>
     <h4 class="col-10 text-center bg-warning2 p-2 mx-auto">& make notes about your favorites</h4>
   </div>
+  <a href="/notes"><button type="button" id="notebutton" class="btn btn-dark">My Notes</button></a>
+
 
   <div class="row">
     <!-- <img src="..." class="card-img-top" alt="..."> -->
@@ -12,16 +14,75 @@
       <div class="card col-5 p-3 my-2 mx-auto">
         <div class="card-body">
           <h5 class="card-title">{{title}}</h5>
-          <a href="https://www.nytimes.com/{{link}}">article link</a>
+          <a href="https://www.nytimes.com{{link}}" target="_blank">article link</a>
           <p class="card-text"><small class="text-muted">{{summary}}</small></p>
+          <!-- <p>{{_id}}</p> -->
+          <button data-id="{{_id}}"type="button" id="savenote" name="button"class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Write Note</button>
 
-          <p>{{_id}}</p>
-<button data-id="{{_id}}"type="button" id="savenote" name="button" id= "noteButton" class="btn btn-warning">Write Note</button>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="form-group">
+  <label for="exampleFormControlInput1">Note Title</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1">
+</div>
+                  <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+        <label for="exampleFormControlTextarea1">Article Notes:</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     {{/each}}
-
   </div>
+
+  <ul>
+  {{#each notes}}
+      {{> notes/note-block}}
+  {{/each}}
+</ul>
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
 
 </div>
 

@@ -25,8 +25,9 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/unit18Populater", { ueNewUrlParser: true });
-
+// mongoose.connect("mongodb://localhost/unit18Populater", { ueNewUrlParser: true});
+mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true }, function(err) { console.log("mongoDB connected", err); })
+// mongoose.connect("mongodb://localhost/unit18Populater", {useFindAndModify:false});
 
 var exphbs = require("express-handlebars");
 
@@ -45,9 +46,20 @@ db.Article.find({})
       res.render("index", hbsObject);
     });
     // res.render('index');
+
 });
 
-
+app.get('/notes', function (req, res) {
+db.Note.find({})
+    .then(function(data) {
+      var hbsObject = {
+        notes: data
+      };
+      console.log(hbsObject);
+      res.render("index", hbsObject);
+    });
+    // res.render('index');
+});
 //MY NYT SCRAPE
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
@@ -72,6 +84,7 @@ app.get("/scrape", function(req, res) {
         // .children("a")
         // .attr("href");
       // Create a new Article using the `result` object built from scraping
+
       db.Article.create(result)
         .then(function(dbArticle) {
           // View the added result in the console
