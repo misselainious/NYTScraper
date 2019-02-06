@@ -24,9 +24,15 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
+
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/unit18Populater";
+
+mongoose.connect(MONGODB_URI);
+
 // Connect to the Mongo DB
 // mongoose.connect("mongodb://localhost/unit18Populater", { ueNewUrlParser: true});
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true }, function(err) { console.log("mongoDB connected", err); })
+// mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true }, function(err) { console.log("mongoDB connected", err); })
 // mongoose.connect("mongodb://localhost/unit18Populater", {useFindAndModify:false});
 
 var exphbs = require("express-handlebars");

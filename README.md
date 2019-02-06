@@ -18,17 +18,17 @@ Web-Scraping app using Mongoose, Cheerio, Express and Handlebars
 
 ## Technologies used
 
-    ### Front-end
+    __Front-end__
     - Bootstrap
     - Handlebars
 
-    ### Back-end
+    __Back-end__
     - Node.js
     - express
     - Mongoose
 
-    ### database
+    __Database__
     - mongo
 
-    ### deployment
+    __Deployment__
     - heroku
