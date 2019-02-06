@@ -46,6 +46,7 @@ db.Article.find({})
     });
 });
 
+//Displays Notes
 app.get('/notes', function (req, res) {
 db.Note.find({})
     .then(function(data) {
@@ -55,8 +56,8 @@ db.Note.find({})
       console.log(hbsObject);
       res.render("index", hbsObject);
     });
-    // res.render('index');
 });
+
 //MY NYT SCRAPE
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
@@ -68,20 +69,14 @@ app.get("/scrape", function(req, res) {
     $("article").each(function(i, element) {
       // Save an empty result object
       var result = {};
-      // var title = $(element).children().text();
-      // var link = $(element).find("div.row.sku-info").text();
-      // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(element).find("h2").text();
-        // .children("a")
-        // .text();
-      result.link = $(element).find("a").attr("href");
+      // Add the title, href and summary of every link, and save them as properties of the result object
 
+      result.title = $(element).find("h2").text();
+      result.link = $(element).find("a").attr("href");
       result.summary = $(element).find("p").text();
 
-        // .children("a")
-        // .attr("href");
-      // Create a new Article using the `result` object built from scraping
 
+      // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
         .then(function(dbArticle) {
           // View the added result in the console
@@ -105,8 +100,6 @@ app.get("/articles", function(req, res) {
     .then(function(dbArticle) {
       // If we were able to successfully find Articles, send them back to the client
       res.json(dbArticle);
-
-
     })
     .catch(function(err) {
       // If an error occurred, send it to the client
@@ -131,6 +124,24 @@ app.get("/clearall", function(req, res) {
     }
   });
 });
+
+// // Clear a specific note
+// app.get("/deletenote", function(req, res) {
+//   // Remove specific note from the notes collection
+//   db.Note.remove({_id: req.params.id }, function(error, response) {
+//     // Log any errors to the console
+//     if (error) {
+//       console.log(error);
+//       res.send(error);
+//     }
+//     else {
+//       // Otherwise, send the mongojs response to the browser
+//       // This will fire off the success function of the ajax request
+//       console.log(response);
+//       res.send("Note deleted");
+//     }
+//   });
+// });
 
 
 // Route for grabbing a specific Article by id, populate it with it's note
@@ -167,6 +178,25 @@ app.post("/articles/:id", function(req, res) {
       // If an error occurred, send it to the client
       res.json(err);
     });
+});
+
+// Clear the DB
+app.get("/deletenote:id", function(req, res) {
+  // Remove every note from the notes collection
+  db.Note.remove({ _id: req.params.id}, function(error, response) {
+    // Log any errors to the console
+    if (error) {
+      console.log(error);
+      res.send(error);
+    }
+    else {
+      // Otherwise, send the mongojs response to the browser
+      // This will fire off the success function of the ajax request
+      console.log(response);
+      console.log("reqParams");
+      res.send(response);
+    }
+  });
 });
 
 app.listen(PORT, function() {

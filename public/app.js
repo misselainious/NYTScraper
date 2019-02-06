@@ -1,43 +1,3 @@
-//
-// // Whenever someone clicks a p tag
-// $(document).on("click", "p", function() {
-//   // Empty the notes from the note section
-//   $("#notes").empty();
-//   // Save the id from the p tag
-//   var thisId = $(this).attr("data-id");
-//   console.log(thisId);
-//
-//   // Now make an ajax call for the Article
-//   $.ajax({
-//     method: "GET",
-//     url: "/articles/" + thisId
-//   })
-//     // With that done, add the note information to the page
-//     .then(function(data) {
-//         console.log("this ID:",thisId)
-//       console.log(data);
-// // const notes = [];
-// //
-// //       notes.push(thisId);
-// //       $("#notes").append("<h2>" + notes + "</h2>");
-//       // The title of the article
-//       $("#notes").append("<h2>" + data.title + "</h2>");
-//       // An input to enter a new title
-//       $("#notes").append("<input id='titleinput' name='title' >");
-//       // A textarea to add a new note body
-//       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
-//       // A button to submit a new note, with the id of the article saved to it
-//       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
-//
-//       // If there's a note in the article
-//       if (data.note) {
-//         // Place the title of the note in the title input
-//         $("#titleinput").val(data.note.title);
-//         // Place the body of the note in the body textarea
-//         $("#bodyinput").val(data.note.body);
-//       }
-//     });
-// });
 
 // When you click the savenote button
 $(document).on("click", "#savenote", function() {
@@ -70,4 +30,30 @@ $(document).on("click", "#savenote", function() {
 
   //Alert the user their note was saved:
   alert("Your note was saved!");
+});
+
+
+// When user clicks the delete button for a note
+$(document).on("click", "#deletenote", function() {
+  // Save the p tag that encloses the button
+  var selected = $(this).attr("data-id");
+  console.log(selected, "<-Selected");
+  // Make an AJAX GET request to delete the specific note
+  // this uses the data-id of the p-tag, which is linked to the specific note
+  $(this).parents(".parentdiv").remove();
+  // $.ajax({
+  //   type: "DELETE",
+  //   url: "/deletenote/" + selected,
+  //
+  //   // On successful call
+  //   success: function(response) {
+  //     // Remove the p-tag from the DOM
+  //     selected.remove();
+  //     // Clear the note and title inputs
+  //     $("#title").val("");
+  //     $("#body").val("");
+  //     // Make sure the #action-button is submit (in case it's update)
+  //     // $("#action-button").html("<button id='make-new'>Submit</button>");
+  //   }
+  // });
 });
