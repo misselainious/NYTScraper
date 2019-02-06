@@ -75,7 +75,6 @@ app.get("/scrape", function(req, res) {
       result.link = $(element).find("a").attr("href");
       result.summary = $(element).find("p").text();
 
-
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
         .then(function(dbArticle) {
@@ -87,10 +86,10 @@ app.get("/scrape", function(req, res) {
           console.log(err);
         });
     });
-
-    // Send a message to the client
-    res.send("Scrape Complete");
+    //redirect to homepage after scraping
+    res.redirect("../");
   });
+
 });
 
 // Route for getting all Articles from the db
@@ -109,6 +108,7 @@ app.get("/articles", function(req, res) {
 
 // Clear the DB
 app.get("/clearall", function(req, res) {
+
   // Remove every note from the notes collection
   db.Article.remove({}, function(error, response) {
     // Log any errors to the console
@@ -120,7 +120,8 @@ app.get("/clearall", function(req, res) {
       // Otherwise, send the mongojs response to the browser
       // This will fire off the success function of the ajax request
       console.log(response);
-      res.send(response);
+      //redirect to homepage after scraping
+      res.redirect("../");
     }
   });
 });
@@ -142,7 +143,6 @@ app.get("/clearall", function(req, res) {
 //     }
 //   });
 // });
-
 
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
@@ -183,7 +183,7 @@ app.post("/articles/:id", function(req, res) {
 // Clear the DB
 app.get("/deletenote:id", function(req, res) {
   // Remove every note from the notes collection
-  db.Note.remove({ _id: req.params.id}, function(error, response) {
+  db.Article.remove({ _id: req.params.id}, function(error, response) {
     // Log any errors to the console
     if (error) {
       console.log(error);

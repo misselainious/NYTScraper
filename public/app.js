@@ -41,19 +41,8 @@ $(document).on("click", "#deletenote", function() {
   // Make an AJAX GET request to delete the specific note
   // this uses the data-id of the p-tag, which is linked to the specific note
   $(this).parents(".parentdiv").remove();
-  // $.ajax({
-  //   type: "DELETE",
-  //   url: "/deletenote/" + selected,
-  //
-  //   // On successful call
-  //   success: function(response) {
-  //     // Remove the p-tag from the DOM
-  //     selected.remove();
-  //     // Clear the note and title inputs
-  //     $("#title").val("");
-  //     $("#body").val("");
-  //     // Make sure the #action-button is submit (in case it's update)
-  //     // $("#action-button").html("<button id='make-new'>Submit</button>");
-  //   }
-  // });
+  $.ajax({
+    type: "DELETE",
+    url: "/deletenote/" + selected
+  })
 });
