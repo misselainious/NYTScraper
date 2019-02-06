@@ -1,6 +1,9 @@
 # :newspaper: __NYTScraper__ :clipboard:
 Web-Scraping app using Mongoose, Cheerio, Express and Handlebars
 
+## Live website
+ - [NYT Scraper](https://powerful-spire-60853.herokuapp.com/)
+
 ## Author
   - :wine_glass: [Elaine Cadman](https://github.com/misselainious)
 
@@ -16,19 +19,20 @@ Web-Scraping app using Mongoose, Cheerio, Express and Handlebars
 ## Description
    _scraper.NYT_ scrapes article titles, links and summaries, if available, into a mongo database and displays each article using handlebars. Another model stores user notes and allows the user to create, view or update notes on the front-end.
 
+
 ## Technologies used
 
-    __Front-end__
+  __Front-end__
     - Bootstrap
     - Handlebars
 
-    __Back-end__
+  __Back-end__
     - Node.js
     - express
     - Mongoose
 
-    __Database__
+  __Database__
     - mongo
 
-    __Deployment__
+  __Deployment__
     - heroku
