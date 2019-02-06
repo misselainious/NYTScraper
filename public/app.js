@@ -31,18 +31,3 @@ $(document).on("click", "#savenote", function() {
   //Alert the user their note was saved:
   alert("Your note was saved!");
 });
-
-
-// // When user clicks the delete button for a note
-// $(document).on("click", "#deletenote", function() {
-//   // Save the p tag that encloses the button
-//   var selected = $(this).attr("data-id");
-//   console.log(selected, "<-Selected");
-//   // Make an AJAX GET request to delete the specific note
-//   // this uses the data-id of the p-tag, which is linked to the specific note
-//   $(this).parents(".parentdiv").remove();
-//   $.ajax({
-//     type: "DELETE",
-//     url: "/deletenote/" + selected
-//   })
-// });

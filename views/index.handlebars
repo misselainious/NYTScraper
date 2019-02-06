@@ -1,28 +1,37 @@
-<img src="./images/nyt.jpg" class = "w-100" alt="NYT Banner">
+<!-- Banner -->
+<img src="./images/nyt.jpg" class="w-100" alt="NYT Banner">
+
 <div class="container">
 
   <div class="row">
+    <!-- Headers -->
     <h1 class="col-10 text-center bg-warning p-4 mx-auto">Extra! Extra! Read all the news below!</h1>
     <h4 class="col-10 text-center bg-warning2 p-2 mx-auto">& make notes about your favorites</h4>
   </div>
+
+  <!-- Buttons Directory -->
   <a href="/notes"><button type="button" id="notebutton" class="btn btn-dark">My Notes</button></a>
   <a href="/"><button type="button" id="artbutton" class="btn btn-dark">Articles List</button></a>
   <a href="/clearall"><button type="button" id="clearbutton" class="btn btn-dark">Clear Articles</button></a>
   <a href="/scrape"><button type="button" id="scrapebutton" class="btn btn-dark">Get New Articles!</button></a>
+
+  <!-- Articles Area -->
   <div class="row">
-    <!-- <img src="..." class="card-img-top" alt="..."> -->
     {{#each articles}}
       <div class="card col-5 p-3 my-2 mx-auto">
         <div class="card-body">
           <h5 class="card-title">{{title}}</h5>
-          <a href="https://www.nytimes.com{{link}}" target="_blank">article link</a>
+          <a href="https://www.nytimes.com{{link}}" target="_blank">Read Full Article</a>
           <p class="card-text"><small class="text-muted">{{summary}}</small></p>
-          <!-- <p>{{_id}}</p> -->
-          <button data-id="{{_id}}"type="button" id="writenote" name="button"class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Write Note</button>
+          <!-- Button to trigger modal for Note -->
+          <button data-id="{{_id}}" type="button" id="writenote" name="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Write Note</button>
+
+          <!-- Button to remove article from db and container  -->
           <a href="/removeone/{{_id}}">
-            <button data-id="{{_id}}"type="button" id="remove_article" name="button"class="btn btn-warning">Remove Article</button>
+            <button data-id="{{_id}}" type="button" id="remove_article" name="button" class="btn btn-warning">Remove Article</button>
           </a>
-          <!-- Modal -->
+
+          <!-- Note Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -38,9 +47,9 @@
                 </div>
                 <div class="modal-body">
                   <div class="form-group">
-        <label for="exampleFormControlTextarea1">Article Notes:</label>
-        <textarea id="bodyinput" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-      </div>
+                    <label for="exampleFormControlTextarea1">Article Notes:</label>
+                    <textarea id="bodyinput" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -49,37 +58,44 @@
               </div>
             </div>
           </div>
-
+          <!-- /Note Modal -->
         </div>
       </div>
     {{/each}}
   </div>
 
+
+  <!-- See note-block.handlebars, displays notes -->
   <div>
-  {{#each notes}}
-    {{#if body}}
-      {{> notes/note-block}}
-    {{/if}}
-  {{/each}}
-</div>
+    {{#each notes}}
+      {{#if body}}
+        {{> notes/note-block}}
+      {{/if}}
+    {{/each}}
+  </div>
 
 
 </div>
+<!-- /Container -->
 
+
+<!-- Page Styling -->
 <style media="screen">
-body{
-  background-color: rgb(195,190,187);
-}
-.btn-warning{
-  background-color: rgb(149,81,66);
-  color: white;
-  border: none;
-}
-.bg-warning{
-  background-color: rgb(211,65,55)!important;
-}
-.bg-warning2{
-  background-color: rgb(214,206,203);
-}
+  body {
+    background-color: rgb(195, 190, 187);
+  }
 
+  .btn-warning {
+    background-color: rgb(149, 81, 66);
+    color: white;
+    border: none;
+  }
+
+  .bg-warning {
+    background-color: rgb(211, 65, 55) !important;
+  }
+
+  .bg-warning2 {
+    background-color: rgb(214, 206, 203);
+  }
 </style>

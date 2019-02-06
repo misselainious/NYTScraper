@@ -145,24 +145,6 @@ app.get("/removeone/:id", function(req, res) {
   });
 });
 
-// // Clear a specific note
-// app.get("/deletenote", function(req, res) {
-//   // Remove specific note from the notes collection
-//   db.Note.remove({_id: req.params.id }, function(error, response) {
-//     // Log any errors to the console
-//     if (error) {
-//       console.log(error);
-//       res.send(error);
-//     }
-//     else {
-//       // Otherwise, send the mongojs response to the browser
-//       // This will fire off the success function of the ajax request
-//       console.log(response);
-//       res.send("Note deleted");
-//     }
-//   });
-// });
-
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
@@ -201,7 +183,7 @@ app.post("/articles/:id", function(req, res) {
 
 app.get("/deletenote/:id", function(req, res) {
 
-  // Remove every note from the notes collection
+  // Remove one note from the notes collection
   db.Note.remove({_id: req.params.id }, function(error, response) {
     // Log any errors to the console
     if (error) {
@@ -217,24 +199,6 @@ app.get("/deletenote/:id", function(req, res) {
     }
   });
 });
-// // Clear the DB
-// app.get("/deletenote:id", function(req, res) {
-//   // Remove every note from the notes collection
-//   db.Article.remove({ _id: req.params.id}, function(error, response) {
-//     // Log any errors to the console
-//     if (error) {
-//       console.log(error);
-//       res.send(error);
-//     }
-//     else {
-//       // Otherwise, send the mongojs response to the browser
-//       // This will fire off the success function of the ajax request
-//       console.log(response);
-//       console.log("reqParams");
-//       res.send(response);
-//     }
-//   });
-// });
 
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT + " you got this...");
