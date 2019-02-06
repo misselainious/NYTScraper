@@ -199,10 +199,10 @@ app.post("/articles/:id", function(req, res) {
     });
 });
 
-// Clear the DB
-app.get("/deletenote:id", function(req, res) {
+app.get("/deletenote/:id", function(req, res) {
+
   // Remove every note from the notes collection
-  db.Article.remove({ _id: req.params.id}, function(error, response) {
+  db.Note.remove({_id: req.params.id }, function(error, response) {
     // Log any errors to the console
     if (error) {
       console.log(error);
@@ -212,11 +212,29 @@ app.get("/deletenote:id", function(req, res) {
       // Otherwise, send the mongojs response to the browser
       // This will fire off the success function of the ajax request
       console.log(response);
-      console.log("reqParams");
-      res.send(response);
+      //redirect to homepage after scraping
+      res.redirect("../notes");
     }
   });
 });
+// // Clear the DB
+// app.get("/deletenote:id", function(req, res) {
+//   // Remove every note from the notes collection
+//   db.Article.remove({ _id: req.params.id}, function(error, response) {
+//     // Log any errors to the console
+//     if (error) {
+//       console.log(error);
+//       res.send(error);
+//     }
+//     else {
+//       // Otherwise, send the mongojs response to the browser
+//       // This will fire off the success function of the ajax request
+//       console.log(response);
+//       console.log("reqParams");
+//       res.send(response);
+//     }
+//   });
+// });
 
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT + " you got this...");
