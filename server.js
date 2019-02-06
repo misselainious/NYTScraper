@@ -35,18 +35,15 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 
-//Testing Handlebars
+//Displays Articles
 app.get('/', function (req, res) {
 db.Article.find({})
     .then(function(data) {
       var hbsObject = {
         articles: data
       };
-      // console.log(hbsObject);
       res.render("index", hbsObject);
     });
-    // res.render('index');
-
 });
 
 app.get('/notes', function (req, res) {
