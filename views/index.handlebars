@@ -19,7 +19,9 @@
           <p class="card-text"><small class="text-muted">{{summary}}</small></p>
           <!-- <p>{{_id}}</p> -->
           <button data-id="{{_id}}"type="button" id="writenote" name="button"class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Write Note</button>
-
+          <a href="/removeone/{{_id}}">
+            <button data-id="{{_id}}"type="button" id="remove_article" name="button"class="btn btn-warning">Remove Article</button>
+          </a>
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

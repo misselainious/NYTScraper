@@ -126,6 +126,25 @@ app.get("/clearall", function(req, res) {
   });
 });
 
+app.get("/removeone/:id", function(req, res) {
+
+  // Remove every note from the notes collection
+  db.Article.remove({_id: req.params.id }, function(error, response) {
+    // Log any errors to the console
+    if (error) {
+      console.log(error);
+      res.send(error);
+    }
+    else {
+      // Otherwise, send the mongojs response to the browser
+      // This will fire off the success function of the ajax request
+      console.log(response);
+      //redirect to homepage after scraping
+      res.redirect("../");
+    }
+  });
+});
+
 // // Clear a specific note
 // app.get("/deletenote", function(req, res) {
 //   // Remove specific note from the notes collection
